@@ -1,0 +1,72 @@
+/* SearchBar styles for playful, dark, student-friendly theme */
+.searchbar-container {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  box-shadow: 0 2px 16px 0 var(--primary);
+  padding: 0 8px 0 0;
+  max-width: 420px;
+  margin: 0 auto;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+.searchbar-dark {
+  background: #23284d;
+  border-radius: 2em;
+  max-width: 600px;
+}
+.searchbar-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 18px 16px 18px 48px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  outline: none;
+}
+.searchbar-input-dark {
+  background: transparent;
+  color: var(--text-main);
+  border: none;
+  flex: 1;
+  padding: 18px 16px 18px 48px;
+  border-radius: 2em;
+  font-size: 1.08rem;
+  outline: none;
+  box-shadow: none;
+}
+.searchbar-input-dark::placeholder {
+  color: var(--text-light);
+  opacity: 1;
+}
+.searchbar-icon {
+  position: absolute;
+  left: 24px;
+  color: var(--secondary);
+  font-size: 22px;
+}
+.searchbar-icon-dark {
+  left: 20px;
+  color: var(--secondary);
+  font-size: 20px;
+  pointer-events: none;
+}
+.searchbar-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.7em 0.9em;
+  font-size: 1.2em;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px 0 var(--primary);
+  cursor: pointer;
+  transition: background 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchbar-btn-dark:hover {
+  background: var(--primary-hover);
+}

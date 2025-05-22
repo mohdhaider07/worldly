@@ -1,0 +1,121 @@
+/* Global resets and utility classes */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  background: none;
+}
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.text-center {
+  text-align: center;
+}
+.rounded {
+  border-radius: 8px;
+}
+.rounded-full {
+  border-radius: 999px;
+}
+.shadow {
+  box-shadow: 0 2px 8px rgba(80, 80, 120, 0.08);
+}
+
+:root {
+  --bg-main: #181c2f;
+  --bg-panel: #23284d;
+  --primary: #4f8cff;
+  --primary-hover: #5faaff;
+  --secondary: #3ee9e5;
+  --success: #a3ff4f;
+  --text-main: #fff;
+  --text-light: #e0e6f7;
+  --card-border: #3ee9e5;
+  --shadow: 0 4px 24px 0 rgba(79, 140, 255, 0.1);
+}
+
+.main-action-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 var(--primary);
+  transition: background 0.18s;
+  margin: 0 auto;
+  display: inline-block;
+}
+.main-action-btn:hover {
+  background: var(--primary-hover);
+}
+.filter-group-container {
+  background: var(--bg-panel);
+  border-radius: 24px;
+  padding: 24px 24px 12px 24px;
+  margin-bottom: 36px;
+  box-shadow: 0 2px 16px 0 rgba(79, 140, 255, 0.09);
+}
+.filter-group-title {
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+.filter-group-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.filter-group-container > *:not(:last-child) {
+  margin-bottom: 14px;
+}
+@media (max-width: 900px) {
+  .filter-group-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+}

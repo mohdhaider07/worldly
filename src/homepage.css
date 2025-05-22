@@ -1,0 +1,76 @@
+/* Blobs and floating country images */
+.modern-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #181c2f 0%, #23284d 100%);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 64px;
+}
+.modern-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 20% 30%, #4f8cff44 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, #3ee9e544 0%, transparent 60%);
+  opacity: 1;
+  pointer-events: none;
+}
+.modern-bg::after {
+  content: "";
+  position: fixed;
+  left: 60vw;
+  top: 10vh;
+  width: 320px;
+  height: 320px;
+  background: url("https://flagcdn.com/w320/in.png") no-repeat center/contain;
+  opacity: 0.07;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+/* Hero section */
+.hero {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 64px 24px 40px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-logo {
+  margin-bottom: 12px;
+}
+.hero-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 16px #0004;
+}
+.hero-desc {
+  color: var(--text-light);
+  font-size: 1.15rem;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* Main content */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 40px 4vw 24px 4vw;
+  }
+  .main-content {
+    padding: 16px 2vw 0 2vw;
+  }
+}

@@ -1,0 +1,48 @@
+/* BackToTop styles for playful, dark, student-friendly theme */
+.backtotop-container {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  opacity: 0.85;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateY(0);
+  z-index: 10;
+}
+.backtotop-container:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+.backtotop-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 14px;
+  box-shadow: 0 8px 24px -3px var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  font-size: 28px;
+}
+.backtotop-btn:hover {
+  background: var(--primary-hover);
+}
+.backtotop-tooltip {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background: var(--bg-panel);
+  color: var(--text-main);
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.backtotop-container:hover .backtotop-tooltip {
+  opacity: 1;
+}

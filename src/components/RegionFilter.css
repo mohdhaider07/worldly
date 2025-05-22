@@ -1,0 +1,39 @@
+.region-filter-container {
+  background: var(--bg-panel);
+  border-radius: 18px;
+  padding: 18px 24px 12px 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 12px 0 rgba(79, 140, 255, 0.07);
+}
+.region-filter-title {
+  color: var(--primary);
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.region-filter-list {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.region-filter-btn {
+  background: #2d3170;
+  color: var(--primary);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+}
+.region-filter-btn.selected,
+.region-filter-btn:focus {
+  background: var(--primary);
+  color: #fff;
+}
+.region-filter-btn:hover {
+  background: #3e4a8a;
+  color: #fff;
+}
