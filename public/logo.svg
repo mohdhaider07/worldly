@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+  <circle cx="28" cy="28" r="26" fill="var(--bg-panel, #23284d)" stroke="var(--primary, #1976d2)" stroke-width="4"/>
+  <ellipse cx="28" cy="28" rx="18" ry="26" fill="none" stroke="var(--primary, #1976d2)" stroke-width="2"/>
+  <ellipse cx="28" cy="28" rx="26" ry="10" fill="none" stroke="var(--primary, #1976d2)" stroke-width="2"/>
+  <path d="M28 2V54" stroke="var(--primary, #1976d2)" stroke-width="2"/>
+  <path d="M2 28H54" stroke="var(--primary, #1976d2)" stroke-width="2"/>
+</svg>
