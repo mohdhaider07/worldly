@@ -2,6 +2,17 @@
 
 This project is for students who want to learn about countries and explore their information interactively.
 
+## Features
+
+- Search for countries by name
+- Filter countries by region
+- Sort or highlight countries by population and area (most populated, least populated, biggest, smallest)
+- View detailed information about each country in a modal (capital, region, subregion, population, area, coordinates, borders, timezones, currency, languages)
+- Responsive and modern UI
+- Back to top button for easy navigation
+- Loading indicators and error handling for API requests
+- Uses React functional components, hooks, and advanced patterns (HOC, memoization, lazy loading)
+
 ## How to Run the Project
 
 1. Clone the repository:
