@@ -43,8 +43,8 @@
 .searchbar-icon {
   position: absolute;
   left: 24px;
+  top: 19px;
   color: var(--secondary);
-  font-size: 22px;
 }
 .searchbar-icon-dark {
   left: 20px;

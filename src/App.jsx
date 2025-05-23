@@ -1,9 +1,20 @@
-import HomePage from "./HomePage";
+import React, { Suspense } from "react";
+import Loader from "./components/Loader";
+
+const HomePage = React.lazy(() => import("./HomePage"));
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Suspense
+        fallback={
+          <div>
+            <Loader />
+          </div>
+        }
+      >
+        <HomePage />
+      </Suspense>
     </div>
   );
 }

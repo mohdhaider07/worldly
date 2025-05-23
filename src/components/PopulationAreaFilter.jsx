@@ -1,35 +1,40 @@
 import React from "react";
 import "./PopulationAreaFilter.css";
 
-const FILTERS = [
-  { label: "Most Populated", value: "most-populated" },
-  { label: "Least Populated", value: "least-populated" },
-  { label: "Biggest Country", value: "biggest" },
-  { label: "Smallest Country", value: "smallest" },
-];
+const PopulationAreaFilterContext = React.createContext();
 
-const PopulationAreaFilter = ({ selectedFilter, setSelectedFilter }) => (
-  <div className="pop-area-filter-container">
-    <h3 className="pop-area-filter-title">Sort/Highlight</h3>
-    <div className="pop-area-filter-list">
-      {FILTERS.map((filter) => (
-        <button
-          key={filter.value}
-          className={`pop-area-filter-btn${
-            selectedFilter === filter.value ? " selected" : ""
-          }`}
-          onClick={(e) => {
-            setSelectedFilter(
-              filter.value === selectedFilter ? "" : filter.value
-            );
-            e.target.blur();
-          }}
-        >
-          {filter.label}
-        </button>
-      ))}
-    </div>
-  </div>
-);
+function PopulationAreaFilter({ selectedFilter, setSelectedFilter, children }) {
+  return (
+    <PopulationAreaFilterContext.Provider
+      value={{ selectedFilter, setSelectedFilter }}
+    >
+      <div className="pop-area-filter-container">
+        <h3 className="pop-area-filter-title">Sort/Highlight</h3>
+        <div className="pop-area-filter-list">{children}</div>
+      </div>
+    </PopulationAreaFilterContext.Provider>
+  );
+}
+
+function Option({ value, children }) {
+  const { selectedFilter, setSelectedFilter } = React.useContext(
+    PopulationAreaFilterContext
+  );
+  return (
+    <button
+      className={`pop-area-filter-btn${
+        selectedFilter === value ? " selected" : ""
+      }`}
+      onClick={(e) => {
+        setSelectedFilter(value === selectedFilter ? "" : value);
+        e.target.blur();
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+PopulationAreaFilter.Option = Option;
 
 export default PopulationAreaFilter;

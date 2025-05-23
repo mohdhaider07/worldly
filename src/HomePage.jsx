@@ -6,6 +6,16 @@ import CountryList from "./components/CountryList";
 import Loader from "./components/Loader";
 import BackToTop from "./components/BackToTop";
 import PopulationAreaFilter from "./components/PopulationAreaFilter";
+import { withRegionFilter } from "./components/withRegionFilter";
+
+const RegionFilterWithState = withRegionFilter(RegionFilter);
+
+const FILTERS = [
+  { label: "Most Populated", value: "most-populated" },
+  { label: "Least Populated", value: "least-populated" },
+  { label: "Biggest Country", value: "biggest" },
+  { label: "Smallest Country", value: "smallest" },
+];
 
 const HomePage = () => {
   const [search, setSearch] = useState("");
@@ -30,14 +40,20 @@ const HomePage = () => {
         <div className="filter-group-container">
           <h3 className="filter-group-title">Filters</h3>
           <div className="filter-group-row">
-            <RegionFilter
+            <RegionFilterWithState
               selectedRegion={selectedRegion}
               setSelectedRegion={setSelectedRegion}
             />
             <PopulationAreaFilter
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
-            />
+            >
+              {FILTERS.map((f) => (
+                <PopulationAreaFilter.Option key={f.value} value={f.value}>
+                  {f.label}
+                </PopulationAreaFilter.Option>
+              ))}
+            </PopulationAreaFilter>
           </div>
         </div>
         <CountryList
@@ -45,7 +61,6 @@ const HomePage = () => {
           region={selectedRegion}
           filter={selectedFilter}
         />
-        {/* <Loader /> */}
       </div>
       <BackToTop />
     </div>

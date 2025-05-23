@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import CountryCard from "./CountryCard";
 import Loader from "./Loader";
 import { apiRequest } from "../requestMethod";
-import CountryDetailModal from "./CountryDetailModal";
-
 const PAGE_SIZE = 20;
+// Lazy load modal for code splitting
+const CountryDetailModal = React.lazy(() => import("./CountryDetailModal"));
 
 const CountryList = ({ search, region, filter }) => {
   const [countries, setCountries] = useState([]);
@@ -28,38 +28,53 @@ const CountryList = ({ search, region, filter }) => {
     fetchCountries();
   }, []);
 
-  const filteredCountries = countries.filter((country) => {
-    const matchesSearch = country.name
-      .toLowerCase()
-      .includes((search || "").toLowerCase());
-    const matchesRegion = !region || country.region === region;
-    return matchesSearch && matchesRegion;
-  });
+  const filteredCountries = useMemo(
+    () =>
+      countries.filter((country) => {
+        const matchesSearch = country.name
+          .toLowerCase()
+          .includes((search || "").toLowerCase());
+        const matchesRegion = !region || country.region === region;
+        return matchesSearch && matchesRegion;
+      }),
+    [countries, search, region]
+  );
 
-  let displayCountries = filteredCountries;
-
-  if (filter === "most-populated") {
-    displayCountries = [...filteredCountries].sort(
-      (a, b) => (b.population || 0) - (a.population || 0)
-    );
-  } else if (filter === "least-populated") {
-    displayCountries = [...filteredCountries].sort(
-      (a, b) => (a.population || 0) - (b.population || 0)
-    );
-  } else if (filter === "biggest") {
-    displayCountries = [...filteredCountries].sort(
-      (a, b) => (b.area || 0) - (a.area || 0)
-    );
-  } else if (filter === "smallest") {
-    displayCountries = [...filteredCountries]
-      .filter((c) => c.area > 0)
-      .sort((a, b) => a.area - b.area);
-  }
+  const displayCountries = useMemo(() => {
+    let result = filteredCountries;
+    if (filter === "most-populated") {
+      result = [...filteredCountries].sort(
+        (a, b) => (b.population || 0) - (a.population || 0)
+      );
+    } else if (filter === "least-populated") {
+      result = [...filteredCountries].sort(
+        (a, b) => (a.population || 0) - (b.population || 0)
+      );
+    } else if (filter === "biggest") {
+      result = [...filteredCountries].sort(
+        (a, b) => (b.area || 0) - (a.area || 0)
+      );
+    } else if (filter === "smallest") {
+      result = [...filteredCountries]
+        .filter((c) => c.area > 0)
+        .sort((a, b) => a.area - b.area);
+    }
+    return result;
+  }, [filteredCountries, filter]);
 
   // Reset visibleCount if filter changes (optional, for better UX)
-  React.useEffect(() => {
+  useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [search, region, filter]);
+
+  const handleShowMore = useCallback(() => {
+    setVisibleCount((prev) => prev + PAGE_SIZE);
+  }, []);
+
+  const handleMoreInfo = useCallback((countryName) => {
+    setSelectedCountry(countryName);
+    setModalOpen(true);
+  }, []);
 
   return (
     <>
@@ -73,31 +88,27 @@ const CountryList = ({ search, region, filter }) => {
             region={country.region}
             population={country.population}
             area={country.area}
-            onMoreInfo={() => {
-              setSelectedCountry(country.name);
-              setModalOpen(true);
-            }}
+            onMoreInfo={() => handleMoreInfo(country.name)}
           />
         ))}
       </div>
       {loading && <Loader />}
       {!loading && visibleCount < displayCountries.length && (
         <div style={{ textAlign: "center", margin: "32px 0" }}>
-          <button
-            className="main-action-btn"
-            onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
-          >
+          <button className="main-action-btn" onClick={handleShowMore}>
             Show More Countries
           </button>
         </div>
       )}
-      <CountryDetailModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        countryName={selectedCountry}
-      />
+      <React.Suspense fallback={<Loader />}>
+        <CountryDetailModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          countryName={selectedCountry}
+        />
+      </React.Suspense>
     </>
   );
 };
 
-export default CountryList;
+export default React.memo(CountryList);

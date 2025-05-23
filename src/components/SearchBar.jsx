@@ -2,8 +2,11 @@ import React from "react";
 import { MdSearch, MdTravelExplore } from "react-icons/md";
 import "./SearchBar.css";
 
-const SearchBar = ({ search, setSearch }) => (
+const SearchBar = React.memo(({ search, setSearch }) => (
   <div className="searchbar-container searchbar-dark">
+    <span className="searchbar-icon searchbar-icon-dark">
+      <MdSearch />
+    </span>
     <input
       type="text"
       placeholder="Search for a country..."
@@ -11,13 +14,10 @@ const SearchBar = ({ search, setSearch }) => (
       value={search}
       onChange={(e) => setSearch(e.target.value)}
     />
-    <span className="searchbar-icon searchbar-icon-dark">
-      <MdSearch />
-    </span>
     <button className="searchbar-btn searchbar-btn-dark">
       <MdTravelExplore />
     </button>
   </div>
-);
+));
 
 export default SearchBar;
