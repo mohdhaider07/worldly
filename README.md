@@ -1,12 +1,44 @@
-# React + Vite
+# Country Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is for students who want to learn about countries and explore their information interactively.
 
-Currently, two official plugins are available:
+## How to Run the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+2. Go into the project directory:
+   ```
+   cd country
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the development server:
+   ```
+   npm run dev
+   ```
 
-## Expanding the ESLint configuration
+## API Integration Details
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project uses the Countries API: https://countries-api-abhishek.vercel.app/
+
+### How the API is Used
+
+- **API Setup:**
+
+  - The API base URL is set in `src/requestMethod.js` using Axios.
+
+- **Fetching All Countries:**
+
+  - In `src/components/CountryList.jsx`, the endpoint `/countries` is called to get the list of all countries for listing and filtering.
+
+- **Fetching Details for a Single Country:**
+  - In `src/components/CountryDetailModal.jsx`, the endpoint `/countries/{countryName}` is called to get detailed information about a selected country.
+
+| Feature/Component    | API Route Used             | Purpose                                    |
+| -------------------- | -------------------------- | ------------------------------------------ |
+| Country List         | `/countries`               | Fetch all countries for listing/filtering  |
+| Country Detail Modal | `/countries/{countryName}` | Fetch detailed info for a selected country |
